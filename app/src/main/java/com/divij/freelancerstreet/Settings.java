@@ -42,7 +42,7 @@ public class Settings extends AppCompatActivity {
     private DatabaseReference mCustomerDatabase;
     private String userId , name,phone , profileImageUrl;
     private Uri resultUri;
-    private StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
 
 
     @Override
