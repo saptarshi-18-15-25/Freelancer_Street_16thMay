@@ -35,15 +35,22 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
-    private EditText mNameField,mPhoneField;
-    private Button mBack,mConfirm;
+    private EditText mNameField,mPhoneField,mLinkedin,mDescription,mSkills;
+    private Button mConfirm,mSignout;
     private ImageView mProfileImage;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
-    private String userId , name,phone , profileImageUrl,userSex;
+    private String userId , name,phone , profileImageUrl,userSex,linkedin,description,skills;
     private Uri resultUri;
 
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Settings.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +62,27 @@ public class Settings extends AppCompatActivity {
         mPhoneField=findViewById(R.id.Phone);
         mProfileImage=findViewById(R.id.profileImage);
         mConfirm=findViewById(R.id.confirm);
-        mBack=findViewById(R.id.back);
+        mLinkedin=findViewById(R.id.Linkedin);
+        mDescription=findViewById(R.id.Description);
+        mSkills=findViewById(R.id.Skills);
+       // mBack=findViewById(R.id.back);
         mAuth=FirebaseAuth.getInstance();
+        mSignout=findViewById(R.id.signout);
         userId= Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
         getUserInfo();
+
+        mSignout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent=new Intent(Settings.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         mProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +100,8 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         });
-        mBack.setOnClickListener(new View.OnClickListener() {
+
+     /*   mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings.this,MainActivity.class);
@@ -87,7 +110,7 @@ public class Settings extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     private void getUserInfo() {
@@ -105,9 +128,20 @@ public class Settings extends AppCompatActivity {
                         phone=(Objects.requireNonNull(map.get("phone"))).toString();
                         mPhoneField.setText(phone);
                     }
-                    if(map.get("sex")!=null){
-                        userSex=(Objects.requireNonNull(map.get("sex"))).toString();
-                        mPhoneField.setText(phone);
+                    if(map.get("Identity")!=null) {
+                        userSex = (Objects.requireNonNull(map.get("Identity"))).toString();
+                    }
+                    if(map.get("LinkedIn")!=null){
+                       linkedin = (Objects.requireNonNull(map.get("LinkedIn"))).toString();
+                        mLinkedin.setText(linkedin);
+                    }
+                    if(map.get("Description")!=null){
+                        description= (Objects.requireNonNull(map.get("Description"))).toString();
+                        mDescription.setText(description);
+                    }
+                    if(map.get("Skills")!=null){
+                        skills= (Objects.requireNonNull(map.get("Skills"))).toString();
+                        mSkills.setText(skills);
                     }
                     Glide.clear(mProfileImage);
                     if(map.get("profileImageUrl")!=null){
@@ -119,7 +153,6 @@ public class Settings extends AppCompatActivity {
 
                             default:
                                 Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
-
                                 break;
 
                         }
@@ -131,7 +164,7 @@ public class Settings extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError){
 
             }
         });
@@ -140,10 +173,17 @@ public class Settings extends AppCompatActivity {
     private void saveUserInformation() {
         name = mNameField.getText().toString();
         phone= mPhoneField.getText().toString();
+        linkedin= mLinkedin.getText().toString();
+        description= mDescription.getText().toString();
+        skills= mSkills.getText().toString();
+
 
         Map<String, Object> userInfo= new HashMap<>();
         userInfo.put("name",name );
         userInfo.put("phone",phone );
+        userInfo.put("LinkedIn",linkedin);
+        userInfo.put("Description",description);
+        userInfo.put("Skills",skills);
         mUserDatabase.updateChildren(userInfo);
         if(resultUri!=null){
             final StorageReference filepath= FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
@@ -198,5 +238,6 @@ public class Settings extends AppCompatActivity {
             mProfileImage.setImageURI(resultUri);
 
         }
+
     }
 }

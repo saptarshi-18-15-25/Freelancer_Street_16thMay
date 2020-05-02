@@ -8,19 +8,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.divij.freelancerstreet.R;
 
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mMessage;
-    public LinearLayout mContainer;
+    public CardView mChatcard;
 
     public ChatViewHolder(@NonNull View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
         mMessage=itemView.findViewById(R.id.messsage);
-        mContainer=itemView.findViewById(R.id.container);
+        mChatcard=itemView.findViewById(R.id.Chatcard);
 
     }
 

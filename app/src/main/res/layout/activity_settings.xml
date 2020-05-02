@@ -6,39 +6,193 @@
     android:layout_height="match_parent"
     tools:context=".Settings"
     android:orientation="vertical"
+    android:background="#273238"
     android:padding="20sp">
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
         android:layout_width="100sp"
         android:layout_height="100sp"
-        android:id="@+id/profileImage"
-        android:src="@mipmap/ic_launcher"/>
-
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:backgroundTint="@android:color/transparent"
         android:hint="Name"
-        android:layout_marginBottom="20sp"
-        ></EditText>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Phone"
-        android:hint="Phone"
-        android:layout_marginBottom="20sp"
-        android:inputType="phone"
-        ></EditText>
+        android:textAlignment="center">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/confirm"
-        android:text="confirm"></Button>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/back"
-        android:text="back"></Button>
+    </EditText>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="10sp">
 
+    <TextView
+        android:layout_width="130dp"
+        android:layout_marginTop="10sp"
+        android:layout_height="match_parent"
+        android:text="Contact:">
+
+    </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10sp"
+        android:paddingBottom="10sp"
+        app:cardCornerRadius="10dp">
+
+        <EditText
+            android:id="@+id/Phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="top"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:textAlignment="gravity">
+
+        </EditText>
+    </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10sp">
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Linkedin Profile:">
+
+        </TextView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10sp"
+            android:paddingBottom="10sp"
+            app:cardCornerRadius="10dp">
+
+        <EditText
+            android:id="@+id/Linkedin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:layout_marginLeft="10sp"
+            android:background="@android:color/transparent"
+            android:hint="Linkedin Profile">
+
+
+
+        </EditText>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10sp">
+        <TextView
+            android:layout_width="130dp"
+            android:layout_marginTop="10sp"
+            android:layout_height="wrap_content"
+            android:text="Description:">
+
+        </TextView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:paddingBottom="10sp"
+            android:paddingStart="10sp">
+
+        <EditText
+            android:id="@+id/Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Description">
+
+
+        </EditText>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="130dp"
+            android:layout_marginTop="10sp"
+            android:layout_height="wrap_content"
+            android:text="Skills:">
+
+        </TextView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:paddingBottom="10sp"
+            android:paddingStart="10sp">
+        <EditText
+            android:id="@+id/Skills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Skills">
+
+        </EditText>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:text="Confirm"
+            android:textColor="#273238"
+            android:textAllCaps="false">
+
+        </Button>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:paddingTop="10sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10sp">
+            <Button
+                android:id="@+id/signout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="logoutUser"
+                android:textColor="#273238"
+                android:text="SignOut"
+                android:elevation="20sp"
+                android:background="@drawable/button_round"
+                android:textAllCaps="false">
+
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

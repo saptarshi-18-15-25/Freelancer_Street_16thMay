@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +23,22 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmail,mPassword;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private TextView mNoAcc,mForgotpass;
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mNoAcc=findViewById(R.id.SignupText);
+        mForgotpass=findViewById(R.id.forgotpass);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener=new FirebaseAuth.AuthStateListener() {
@@ -47,6 +60,15 @@ public class LoginActivity extends AppCompatActivity {
         mEmail=findViewById(R.id.email);
         mPassword=findViewById(R.id.password);
 
+
+        mNoAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this , RegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,13 +78,21 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"sign in error",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Sign in Error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         });
 
+       mForgotpass.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(LoginActivity.this , ForgotPassword.class);
+               startActivity(intent);
+               finish();
+           }
+       });
     }
 
     @Override

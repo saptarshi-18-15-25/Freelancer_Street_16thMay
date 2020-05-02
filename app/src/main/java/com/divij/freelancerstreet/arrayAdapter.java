@@ -27,9 +27,26 @@ public class arrayAdapter extends ArrayAdapter<cards> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
         TextView name = (TextView)convertView.findViewById(R.id.name);
+        TextView linkedin = (TextView)convertView.findViewById(R.id.Linkedin);
+        TextView description = (TextView)convertView.findViewById(R.id.Description);
+        TextView skills = (TextView)convertView.findViewById(R.id.Skills);
+        TextView names_label = (TextView)convertView.findViewById(R.id.Name_Title);
+
+        TextView linkedin_link= (TextView)convertView.findViewById(R.id.linkedin_link);
+        TextView describe_label= (TextView)convertView.findViewById(R.id.describe);
+        TextView skills_label = (TextView)convertView.findViewById(R.id.skills_label);
+
         ImageView image = (ImageView)convertView.findViewById(R.id.image);
         assert card_item != null;
         name.setText(card_item.getName());
+
+        description.setText(card_item.getDescription());
+        linkedin.setText(card_item.getLinkedin());
+        skills.setText(card_item.getSkills());
+        names_label.setText("Name:");
+        describe_label.setText("Description:");
+        linkedin_link.setText("Linkedin: Profile");
+        skills_label.setText("Skills:");
         image.setImageResource(R.mipmap.ic_launcher_round);
          switch (card_item.getProfileImageUrl()) {
              case "default" :

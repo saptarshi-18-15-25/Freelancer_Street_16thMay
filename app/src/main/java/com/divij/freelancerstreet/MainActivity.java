@@ -25,6 +25,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     List<cards> rowItems;
+    @Override
+    public void onBackPressed() {
+
+            System.exit(1);
+            super.onBackPressed();
+
+
+    }
 
 
 
@@ -118,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    Toast.makeText(MainActivity.this,"new Connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"CONGRATULATIONS,ITS A MATCH!", Toast.LENGTH_LONG).show();
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
-                    usersDb.child(dataSnapshot.getKey()).child("connections").child("matches").child(currentId).child("ChatId").setValue(key);
+                    usersDb.child(Objects.requireNonNull(dataSnapshot.getKey())).child("connections").child("matches").child(currentId).child("ChatId").setValue(key);
 
                     usersDb.child(currentId).child("connections").child("matches").child(dataSnapshot.getKey()).child("ChatId").setValue(key);
                 }
@@ -143,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if (dataSnapshot.child("sex").getValue()!= null) {
-                        userSex = dataSnapshot.child("sex").getValue().toString();
+                    if (dataSnapshot.child("Identity").getValue()!= null) {
+                        userSex = dataSnapshot.child("Identity").getValue().toString();
                         switch (userSex) {
-                            case "Male":
-                                oppoUserSex = "Female";
+                            case "Freelancer":
+                                oppoUserSex = "Start Up";
                                 break;
-                            case "Female":
-                                oppoUserSex = "Male";
+                            case "Start Up":
+                                oppoUserSex = "Freelancer";
                                 break;
                         }
                         getOppositeSexUsers();
@@ -170,38 +179,28 @@ public class MainActivity extends AppCompatActivity {
         usersDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if(dataSnapshot.exists()&&!dataSnapshot.child("connections").child("nope").hasChild(currentId)&&!dataSnapshot.child("connections").child("yeps").hasChild(currentId)&&dataSnapshot.child("sex").getValue().toString().equals(oppoUserSex)){
-                       String profileImageUrl = "default";
-                       if(!dataSnapshot.child("profileImageUrl").getValue().equals("default")){
-                           profileImageUrl=dataSnapshot.child("profileImageUrl").getValue().toString();}
+                if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentId) && dataSnapshot.child("Identity").getValue().toString().equals(oppoUserSex)) {
+                    String profileImageUrl = "default";
+                    if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
+                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                    }
 
-                    String itmStr= "";
+                    String itmStr = "";
 
 // cick on setttings <---- there is no profileImageUrl in the firebase document  thats why its crasshing
-                    if( dataSnapshot.child("profileImageUrl").getValue()==null)
-                    {
-                        Log.i("Image","No profile Image uploaded yet for user "+dataSnapshot.child("name").getValue().toString());
+                    if (dataSnapshot.child("profileImageUrl").getValue() == null) {
+                        Log.i("Image", "No profile Image uploaded yet for user " + dataSnapshot.child("name").getValue().toString());
                         //return;
-                    }
-                    else
-                    {
-                        itmStr= dataSnapshot.child("profileImageUrl").getValue().toString();
+                    } else {
+                        itmStr = dataSnapshot.child("profileImageUrl").getValue().toString();
 
                     }
                     String cardStr0 = dataSnapshot.child("name").getValue().toString();
-                    cards Item = new cards(dataSnapshot.getKey(),
-                            cardStr0,itmStr
-                    );
+                    cards Item = new cards(dataSnapshot.getKey(), cardStr0, itmStr,dataSnapshot.child("LinkedIn").getValue().toString(),dataSnapshot.child("Description").getValue().toString(),dataSnapshot.child("Skills").getValue().toString());
                     rowItems.add(Item);
-                    arrayAdapter.notifyDataSetChanged(); // run the pp andclick on settings // do it again
-                    // okay ?yess
-
-
+                    arrayAdapter.notifyDataSetChanged();
                 }
-
-
             }
-
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -223,13 +222,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void logoutUser(View view) {
-        mAuth.signOut();
-        Intent intent=new Intent(MainActivity.this,ChooseLoginRegistrationActivity.class);
-        startActivity(intent);
-        finish();
 
-    }
 
     public void goToSettings(View view) {
         Intent intent=new Intent(MainActivity.this, Settings.class);

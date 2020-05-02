@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Match's Name"
+        android:textSize="20sp"
         android:id="@+id/MatchName">
 
     </TextView>

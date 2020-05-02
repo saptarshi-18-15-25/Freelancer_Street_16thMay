@@ -4,14 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30sp"
+    android:gravity="center"
     tools:context=".RegistrationActivity"
+    android:background="#273238"
     android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:paddingBottom="20sp">
+     <TextView
+         android:layout_width="80dp"
+         android:layout_height="wrap_content"
+         android:text="Name: ">
+
+     </TextView>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="name"
         android:id="@+id/name"/>
+  </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20sp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Your are: ">
+
+        </TextView>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,28 +47,137 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"/>
+            android:text="Freelancer"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"/>
+            android:text="Start Up"/>
 
     </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20sp">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Email: ">
 
+        </TextView>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="email"
         android:id="@+id/email"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20sp">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="LinkedIn: Profile ">
+
+        </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Linkedin Profile Link"
+        android:id="@+id/Linkedin"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Description: ">
+
+        </TextView>
+
+        <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Previous Work Experience And Projects(Not more than 50 words)"
+        android:id="@+id/Description"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20sp">
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Skills: ">
+
+        </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Skills Possess or Skills Required"
+        android:id="@+id/Skills"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20sp">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Password: ">
+
+        </TextView>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="password"
+        android:layout_marginLeft="10dp"
         android:id="@+id/password"/>
+    </LinearLayout>
     <Button
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:id="@+id/register"/>
+        android:textColor="#273238"
+        android:background="@drawable/button_round"
+        android:textAllCaps="false" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="130sp"
+        android:paddingTop="10sp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? "
+            android:textColor="#788f9b"
+            android:textAlignment="viewEnd">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#83bf84"
+            android:textSize="18sp"
+            android:text="SignIn">
+
+        </TextView>
+    </LinearLayout>
+
 
 </LinearLayout>

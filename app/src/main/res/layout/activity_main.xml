@@ -5,39 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10sp"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="right"
+    android:background="@color/colorPrimary">
+
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SignOut"
-            android:onClick="logoutUser"></Button>
-        <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Matches"
-            android:onClick="goToMatches"></Button>
-        <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:onClick="goToSettings"></Button>
+        android:layout_gravity="right"
+        android:background="@drawable/button_round"
+        android:elevation="20sp"
+        android:onClick="goToSettings"
+        android:text="Profile"
+        android:textColor="#273238"
+        android:textAllCaps="false">
 
-    </LinearLayout>
-
-
+    </Button>
+</LinearLayout>
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
+        android:background="@color/colorPrimary"
         app:rotation_degrees="15.5"
         tools:context=".MyActivity" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:paddingEnd="50dp"
+        android:paddingLeft="50dp"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="goToMatches"
+            android:text="Matches"
+            android:textColor="#273238"
+            android:elevation="20sp"
+            android:textAlignment="center"
+            android:background="@drawable/button_round"
+            android:paddingEnd="20dp"
+            android:textAllCaps="false">
+
+        </Button>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

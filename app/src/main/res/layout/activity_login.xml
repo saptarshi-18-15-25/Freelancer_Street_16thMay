@@ -4,23 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity"
-    android:orientation="vertical">
+    android:background="#273238"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="50sp"
+    tools:context=".LoginActivity">
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email"
-        android:id="@+id/email"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
-        android:id="@+id/password"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/login"/>
+        android:layout_height="572dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Logo"
+            android:layout_width="130sp"
+            android:layout_height="130sp"
+            android:layout_gravity="center"
+            android:paddingBottom="30sp"
+            android:src="@drawable/freelance_logo" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/forgotpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:text="Forgot Password?"
+            android:textAlignment="textEnd"
+            android:textColor="#788f9b">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:text="Login"
+            android:textColor="#273238" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10sp">
+
+            <TextView
+                android:id="@+id/new_user"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:text="New user?  "
+                android:textAlignment="center"
+                android:textColor="#788f9b"
+                android:textSize="15sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/SignupText"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:text="Sign Up "
+                android:textAlignment="center"
+                android:textColor="#83bf84"
+                android:textSize="18sp">
+
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>
