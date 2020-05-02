@@ -15,13 +15,13 @@ import com.divij.freelancerstreet.R;
 
 public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mMessage;
-    public CardView mChatcard;
+    public LinearLayout container;
 
     public ChatViewHolder(@NonNull View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
         mMessage=itemView.findViewById(R.id.messsage);
-        mChatcard=itemView.findViewById(R.id.Chatcard);
+        container=itemView.findViewById(R.id.container);
 
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import com.divij.freelancerstreet.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,11 +38,14 @@ public class ChatActivity extends AppCompatActivity {
     DatabaseReference mDatabaseUser,mDatabaseChats;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         matchId = Objects.requireNonNull(getIntent().getExtras()).getString("matchId");
+
 
         mDatabaseChats = FirebaseDatabase.getInstance().getReference().child("Chat");
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("connections").child("matches").child(matchId).child("ChatId");

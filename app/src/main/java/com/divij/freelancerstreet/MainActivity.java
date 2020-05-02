@@ -179,13 +179,14 @@ public class MainActivity extends AppCompatActivity {
         usersDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentId) && dataSnapshot.child("Identity").getValue().toString().equals(oppoUserSex)) {
-                    String profileImageUrl = "default";
+                    String itmStr = "default";
                     if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
-                        profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                        itmStr = dataSnapshot.child("profileImageUrl").getValue().toString();
                     }
 
-                    String itmStr = "";
+
 
 // cick on setttings <---- there is no profileImageUrl in the firebase document  thats why its crasshing
                     if (dataSnapshot.child("profileImageUrl").getValue() == null) {

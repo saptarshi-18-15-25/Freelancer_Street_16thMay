@@ -148,7 +148,7 @@ public class Settings extends AppCompatActivity {
                         profileImageUrl= (Objects.requireNonNull(map.get("profileImageUrl"))).toString();
                         switch (profileImageUrl) {
                             case "default" :
-                                Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(mProfileImage);
+                                Glide.with(getApplication()).load(R.drawable.profileimage).into(mProfileImage);
                                 break;
 
                             default:
