@@ -48,7 +48,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
                 user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EmailVerificationActivity.this, "Check your mail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EmailVerificationActivity.this, "Please check your mail and verify your account.", Toast.LENGTH_SHORT).show();
                         // f = 1;
                         timer = new Timer();
                         timer.schedule(new TimerTask() {
