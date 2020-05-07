@@ -1,17 +1,19 @@
 package com.divij.freelancerstreet;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,14 +26,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Timer;
 
 public class RegistrationActivity extends AppCompatActivity {
     private Button mRegister;
+    private ImageButton vBtn;
     private EditText mEmail,mPassword,mName,mLinkedin,mDescription,mSkills;
     private RadioGroup mRadioGroup;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private TextView mSignin;
+    private String vemail, vpassword;
+    private int f = 0;
+    private Timer timer;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -41,6 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mSignin=findViewById(R.id.signin);
+        // vBtn = findViewById(R.id.vEBtn);
         mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +64,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null)
                 {
-                    Intent intent=new Intent(RegistrationActivity.this , MainActivity.class);
+                    Intent intent = new Intent(RegistrationActivity.this, EmailVerificationActivity.class);
+                    intent.putExtra("email", vemail);
+                    intent.putExtra("password", vpassword);
                     startActivity(intent);
                     finish();
 
@@ -88,6 +99,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 final String linkedin=mLinkedin.getText().toString();
                 final String description=mDescription.getText().toString();
                 final String skills=mSkills.getText().toString();
+                vemail = email;
+                vpassword = password;
 
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -98,6 +111,29 @@ public class RegistrationActivity extends AppCompatActivity {
 
                          String userId= Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                          DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                       /* FirebaseUser user = mAuth.getCurrentUser();
+                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(RegistrationActivity.this, "Check your mail", Toast.LENGTH_SHORT).show();
+                                f = 1;
+                                timer = new Timer();
+                                timer.schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+
+                                    }
+                                }, 15000);
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(RegistrationActivity.this, "Invalid mail id", Toast.LENGTH_SHORT).show();
+                                f = 0;
+                            }
+                        });*/
                          Map<String, Object> userInfo = new HashMap<String, Object>();
                          userInfo.put("name",name);
                          userInfo.put("LinkedIn",linkedin);
@@ -112,6 +148,27 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+      /*  vBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mAuth.createUserWithEmailAndPassword(vemail,vpassword);
+                FirebaseUser user = mAuth.getCurrentUser();
+                user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(RegistrationActivity.this, "Check your mail", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(RegistrationActivity.this, "Invalid mail id", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }); */
 
     }
 

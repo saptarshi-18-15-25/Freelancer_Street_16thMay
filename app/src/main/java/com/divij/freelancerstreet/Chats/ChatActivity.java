@@ -1,16 +1,15 @@
 package com.divij.freelancerstreet.Chats;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toolbar;
 
 import com.divij.freelancerstreet.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView.Adapter<ChatViewHolder> mChatAdapter;
     private RecyclerView.LayoutManager mChatlayoutManager;
     private EditText mSendEditText;
-    private Button mSendButton;
+    private ImageButton mSendButton;
     private String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     private String matchId,chatId;
     DatabaseReference mDatabaseUser,mDatabaseChats;
@@ -70,36 +69,36 @@ public class ChatActivity extends AppCompatActivity {
 
         });
     }
-        private void sendMessage() {
-         String sendMessageText = mSendEditText.getText().toString();
-         if(!sendMessageText.isEmpty()){
-             DatabaseReference newMessageDb = mDatabaseChats.push();
-             Map<String, String> newMessage =new HashMap<String, String>();
-             newMessage.put("createByUser",currentUserId);
-             newMessage.put("text",sendMessageText);
-             newMessageDb.setValue(newMessage);
-         }
-         mSendEditText.setText(null);
+    private void sendMessage() {
+        String sendMessageText = mSendEditText.getText().toString();
+        if(!sendMessageText.isEmpty()){
+            DatabaseReference newMessageDb = mDatabaseChats.push();
+            Map<String, String> newMessage =new HashMap<String, String>();
+            newMessage.put("createByUser",currentUserId);
+            newMessage.put("text",sendMessageText);
+            newMessageDb.setValue(newMessage);
         }
+        mSendEditText.setText(null);
+    }
 
-        private void getChatId()
-        {
-            mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        chatId = Objects.requireNonNull(dataSnapshot.getValue()).toString();
-                        mDatabaseChats=mDatabaseChats.child(chatId);
-                        mgetChatMessages();
-                    }
+    private void getChatId()
+    {
+        mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    chatId = Objects.requireNonNull(dataSnapshot.getValue()).toString();
+                    mDatabaseChats=mDatabaseChats.child(chatId);
+                    mgetChatMessages();
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
-        }
+            }
+        });
+    }
 
     private void mgetChatMessages() {
         mDatabaseChats.addChildEventListener(new ChildEventListener() {
@@ -117,14 +116,14 @@ public class ChatActivity extends AppCompatActivity {
                     }
                     if(message!=null&&createdByUser!=null)
                     {
-                      Boolean currentUserBoolean = false;
-                      if(createdByUser.equals(currentUserId))
-                      {
-                          currentUserBoolean=true;
-                      }
-                      ChatObject newMessage = new ChatObject(message,currentUserBoolean);
-                      resultsChat.add(newMessage);
-                      mChatAdapter.notifyDataSetChanged();
+                        Boolean currentUserBoolean = false;
+                        if(createdByUser.equals(currentUserId))
+                        {
+                            currentUserBoolean=true;
+                        }
+                        ChatObject newMessage = new ChatObject(message,currentUserBoolean);
+                        resultsChat.add(newMessage);
+                        mChatAdapter.notifyDataSetChanged();
                     }
 
                 }
