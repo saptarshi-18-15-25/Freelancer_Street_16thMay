@@ -15,12 +15,10 @@
         <activity android:name=".EmailVerificationActivity"></activity>
         <activity android:name=".Chats.ChatActivity" />
         <activity android:name=".MatchesActivity" />
-        <activity android:name=".LoginActivity"/>
         <activity android:name=".Settings" />
         <activity android:name=".MainActivity" />
         <activity android:name=".RegistrationActivity"/>
-        <activity android:name=".ChooseLoginRegistrationActivity" >
-
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

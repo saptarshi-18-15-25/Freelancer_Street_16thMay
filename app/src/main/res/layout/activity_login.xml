@@ -5,15 +5,16 @@
     android:layout_height="match_parent"
     android:background="#273238"
     android:gravity="center"
+    android:paddingRight="50sp"
+    android:paddingLeft="50sp"
     android:orientation="vertical"
-    android:padding="50sp"
     tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="572dp"
-
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/Logo"

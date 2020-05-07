@@ -24,6 +24,12 @@ public class EmailVerificationActivity extends AppCompatActivity {
     CheckBox cTCbox;
     private FirebaseAuth mAuth;
     Timer timer;
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EmailVerificationActivity.this,RegistrationActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

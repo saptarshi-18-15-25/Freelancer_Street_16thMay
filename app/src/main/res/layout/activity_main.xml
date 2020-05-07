@@ -30,17 +30,24 @@
 
     </ImageButton>
 </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="580dp"
-        android:background="@color/colorPrimary"
-        app:rotation_degrees="15.5"
-        tools:context=".MyActivity" />
+        <com.lorentzos.flingswipe.SwipeFlingAdapterView
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="472dp"
+            android:background="@color/colorPrimary"
+            app:rotation_degrees="15.5"
+            tools:context=".MyActivity" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
         android:paddingEnd="50dp"
@@ -48,15 +55,15 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="goToMatches"
             android:text="Matches"
+            android:textSize="18sp"
             android:textColor="#273238"
             android:elevation="20sp"
             android:textAlignment="center"
             android:background="@drawable/button_round"
-            android:paddingEnd="20dp"
             android:textAllCaps="false">
 
         </Button>

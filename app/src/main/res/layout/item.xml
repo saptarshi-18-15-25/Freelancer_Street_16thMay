@@ -15,6 +15,13 @@
     android:background="@color/colorPrimary"
     android:clipToPadding="false">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
@@ -271,4 +278,4 @@
 
     </ScrollView>
 </LinearLayout>
-
+</LinearLayout>

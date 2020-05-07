@@ -1,5 +1,6 @@
 package com.divij.freelancerstreet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -25,7 +26,12 @@ public class MatchesActivity extends AppCompatActivity {
     private TextView mTextView;
     private String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MatchesActivity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
