@@ -60,7 +60,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(EmailVerificationActivity.this, MainActivity.class);
+                                Intent intent = new Intent(EmailVerificationActivity.this, IntroActivity.class);
 
                             }
                         }, 15000);
@@ -83,7 +83,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(EmailVerificationActivity.this, MainActivity.class);
+                Intent i = new Intent(EmailVerificationActivity.this, IntroActivity.class);
                 startActivity(i);
             }
         });

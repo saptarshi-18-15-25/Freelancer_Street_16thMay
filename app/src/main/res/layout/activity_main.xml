@@ -8,31 +8,38 @@
     android:padding="10sp"
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="right"
-    android:background="@color/colorPrimary">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:background="@color/colorPrimary">
 
 
-    <ImageButton
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="right"
-        android:background="#273238"
-        android:elevation="20sp"
-        android:padding="0dp"
-        android:onClick="goToSettings"
-        android:src="@drawable/ic_person_black_24dp"
-        android:textColor="#273238"
-        android:textAllCaps="false">
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="right"
+            android:background="#273238"
+            android:elevation="20sp"
+            android:padding="0dp"
+            android:onClick="goToSettings"
+            android:src="@drawable/ic_person_black_24dp"
+            android:textColor="#273238"
+            android:textAllCaps="false">
 
-    </ImageButton>
-</LinearLayout>
+        </ImageButton>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="570dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
@@ -40,7 +47,7 @@
         <com.lorentzos.flingswipe.SwipeFlingAdapterView
             android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="472dp"
+            android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             app:rotation_degrees="15.5"
             tools:context=".MyActivity" />
@@ -55,7 +62,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="goToMatches"
             android:text="Matches"
@@ -71,5 +78,6 @@
 
 
     </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -158,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
                         userSex = dataSnapshot.child("Identity").getValue().toString();
                         switch (userSex) {
                             case "Freelancer":
-                                oppoUserSex = "Start Up";
+                                oppoUserSex = "Start Up/Individual";
                                 break;
-                            case "Start Up":
+                            case "Start Up/Individual":
                                 oppoUserSex = "Freelancer";
                                 break;
                         }
