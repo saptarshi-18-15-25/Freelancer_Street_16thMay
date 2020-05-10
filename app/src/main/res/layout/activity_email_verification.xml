@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".EmailVerificationActivity"
     android:gravity="center"
+    android:paddingStart="30sp"
+    android:paddingEnd="30sp"
     android:orientation="vertical">
 
     <Button
@@ -35,7 +37,28 @@
             android:textColor="#E3F6CD"
             android:text=" I agree with all terms and conditions" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20sp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="10sp"
+        android:textColor="#E3F6CD"
+        android:text="Terms and Conditions: ">
 
+    </TextView>
+        <TextView
+            android:id="@+id/terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/linktosite">
+
+        </TextView>
+
+    </LinearLayout>
     <Button
         android:id="@+id/explore"
         android:layout_width="wrap_content"

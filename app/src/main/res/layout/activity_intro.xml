@@ -29,7 +29,7 @@
                 <ImageView
                     android:layout_width="410dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/one" />
+                    android:src="@drawable/three" />
 
                 <ImageView
                     android:layout_width="410dp"
@@ -38,11 +38,7 @@
                 <ImageView
                     android:layout_width="410dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/three"/>
-                <ImageView
-                    android:layout_width="410dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/four"/>
+                    android:src="@drawable/one"/>
 
             </LinearLayout>
 

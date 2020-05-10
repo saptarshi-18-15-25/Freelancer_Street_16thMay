@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 cards obj1=(cards) dataObject;
                 String userId=obj1.getUserId();
                 usersDb.child(userId).child("connections").child("nope").child(currentId).setValue(true);
-                Toast.makeText(MainActivity.this ,"left",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this ,"The left swipe you are not interested in the freelancer/opportunity.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 String userId=obj1.getUserId();
                 usersDb.child(userId).child("connections").child("yeps").child(currentId).setValue(true);
                 isConnectionMatch(userId);
-                Toast.makeText(MainActivity.this,"Right",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Swiping right should have shown your interest in the project/freelancer.",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(MainActivity.this,"click",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Click",Toast.LENGTH_SHORT).show();
             }
         });
 

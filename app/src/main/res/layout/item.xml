@@ -73,7 +73,7 @@
                                 android:paddingBottom="10sp"
                                 android:textAlignment="center"
                                 android:textColor="#8A7F19"
-                                android:textSize="35sp"
+                                android:textSize="25sp"
                                 android:textStyle="bold|italic"
                                 tools:text="hello" />
                         </LinearLayout>

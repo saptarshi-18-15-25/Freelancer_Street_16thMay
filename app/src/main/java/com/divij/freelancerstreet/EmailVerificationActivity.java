@@ -2,9 +2,11 @@ package com.divij.freelancerstreet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
     Button vBtn, eBtn;
     CheckBox cTCbox;
     private FirebaseAuth mAuth;
+    private TextView mTerms;
     Timer timer;
     @Override
     public void onBackPressed() {
@@ -39,12 +42,13 @@ public class EmailVerificationActivity extends AppCompatActivity {
         cTCbox = findViewById(R.id.cBox);
         eBtn = findViewById(R.id.explore);
         mAuth = FirebaseAuth.getInstance();
-
+        mTerms = findViewById(R.id.terms);
         Intent i1s = getIntent();
         Bundle bundle = i1s.getExtras();
 
         String currentUserEmailid = (String) bundle.get("email");
         String currentUserpassword = (String) bundle.get("password");
+        mTerms.setMovementMethod(LinkMovementMethod.getInstance());
 
         vBtn.setOnClickListener(new View.OnClickListener() {
             @Override
