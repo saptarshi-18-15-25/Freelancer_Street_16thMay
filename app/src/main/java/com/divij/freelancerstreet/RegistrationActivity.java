@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,18 +29,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Timer;
 
-public class RegistrationActivity extends AppCompatActivity {
-    private Button mRegister;
+public class RegistrationActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+    private Button mRegister,fBtn,sBtn;
     private ImageButton vBtn;
     private EditText mEmail,mPassword,mName,mLinkedin,mDescription,mSkills;
     private RadioGroup mRadioGroup;
+    private RadioButton radioButton;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
-    private TextView mSignin;
+    private TextView mSignin, LinText,skillText,nmText,sText,oText;
     private String vemail, vpassword;
     private int f = 0;
     private Timer timer;
     private ProgressDialog progressDialog;
+    LinearLayout formR;
+
 
 
     @Override
@@ -49,6 +53,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mSignin=findViewById(R.id.signin);
+        fBtn = findViewById(R.id.freelanceBtn);
+        sBtn = findViewById(R.id.startupBtn);
+       // sText = findViewById(R.id.selectText);
+       // oText = findViewById(R.id.obText);
+        LinText = findViewById(R.id.LinkedinText);
+        skillText = findViewById(R.id.skillsText);
+        nmText = findViewById(R.id.nText);
+        formR = findViewById(R.id.form);
         // vBtn = findViewById(R.id.vEBtn);
         mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +68,41 @@ public class RegistrationActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegistrationActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        fBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               LinText.setText("LinkedIN Profile :");
+               radioButton = findViewById(R.id.freelance);
+               //sText.setVisibility(View.INVISIBLE);
+              // oText.setVisibility(View.INVISIBLE);
+               sBtn.setVisibility(View.INVISIBLE);
+               skillText.setText("Skills");
+               mRadioGroup.setVisibility(View.INVISIBLE);
+               mDescription.setHint("Previous Work Experience And Projects(Not more than 50 words)\"");
+               nmText.setText("Your Name");
+               fBtn.setText("My Details");
+               formR.setVisibility(View.VISIBLE);
+              // sBtn.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        sBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinText.setText("Website Link :");
+                radioButton = findViewById(R.id.startup);
+                //sText.setVisibility(View.INVISIBLE);
+               // oText.setVisibility(View.INVISIBLE);
+                sBtn.setVisibility(View.INVISIBLE);
+                skillText.setText("Skills Required");
+                mRadioGroup.setVisibility(View.INVISIBLE);
+                fBtn.setText("Organisation Details");
+                mDescription.setHint("About Company(Not more than 50 words)");
+                nmText.setText("Company Name");
+                formR.setVisibility(View.VISIBLE);
+               // fBtn.setVisibility(View.INVISIBLE);
             }
         });
         firebaseAuthStateListener=new FirebaseAuth.AuthStateListener() {
@@ -86,12 +133,12 @@ public class RegistrationActivity extends AppCompatActivity {
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectId = mRadioGroup.getCheckedRadioButtonId();
-                final RadioButton radioButton = findViewById(selectId);
-                if(radioButton.getText()==null)
-                {
-                    return;
-                }
+               // int selectId = mRadioGroup.getCheckedRadioButtonId();
+                //final RadioButton radioButton = findViewById(selectId);
+                //if(radioButton.getText()==null)
+                //{
+                  //  return;
+                //}
 
                 final String email=mEmail.getText().toString();
                 final String password=mPassword.getText().toString();
@@ -183,5 +230,15 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(firebaseAuthStateListener);
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId)
+        {
+            case R.id.freelance :
+                LinText.setText("Website Link :");
+                break;
+        }
     }
 }

@@ -29,7 +29,11 @@
                 <ImageView
                     android:layout_width="410dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/three" />
+                    android:src="@drawable/sr" />
+                <ImageView
+                    android:layout_width="410dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sl" />
 
                 <ImageView
                     android:layout_width="410dp"

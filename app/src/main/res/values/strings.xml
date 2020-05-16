@@ -3,6 +3,6 @@
     <string name="signout">SignOut</string>
     <string name="settings">Settings</string>
     <string name="linktosite">
-    <a href ="http://www.freelancestreet.net/privacy-policy">www.freelancestreet.net/privacy-policy</a>
+    <a href="http://www.freelancestreet.net/privacy-policy">www.freelancestreet.net/privacy-policy</a>
         </string>
 </resources>
